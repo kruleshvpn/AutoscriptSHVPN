@@ -18,7 +18,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
 # set repo
-wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/sources.list.debian7"
+wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/sources.list.debian7"
 wget "http://www.dotdeb.org/dotdeb.gpg"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
 
@@ -54,7 +54,7 @@ cd
 
 #touch screenfetch-dev
 cd
-wget https://github.com/KittyKatt/screenFetch/archive/master.zip
+wget https://github.com/kruleshvpn/AutoscriptSHVPN/raw/master/screenFetch/archive/master.zip
 apt-get install -y unzip
 unzip master.zip
 mv screenFetch-master/screenfetch-dev /usr/bin
@@ -65,7 +65,7 @@ chmod 755 screenfetch
 cd
 echo "clear" >> .bash_profile
 echo "screenfetch" >> .bash_profile
-#wget -O screenfetch-dev "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/screenfetch-dev"
+#wget -O screenfetch-dev "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/screenfetch-dev"
 #mv screenfetch-dev /usr/bin/screenfetch
 #chmod +x /usr/bin/screenfetch
 #echo "clear" >> .profile
@@ -75,24 +75,24 @@ echo "screenfetch" >> .bash_profile
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by Rizal Hidayat | 081515292117</pre>" > /home/vps/public_html/index.html
+echo "<pre>Setup by Khairul Amin | 01119800265</pre>" > /home/vps/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/vps.conf"
 sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
 service php5-fpm restart
 service nginx restart
 
 # install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.github.com/arieonline/autoscript/master/conf/openvpn-debian.tar"
+wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/openvpn-debian.tar"
 cd /etc/openvpn/
 tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/1194.conf"
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/1194.conf"
 service openvpn restart
 sysctl -w net.ipv4.ip_forward=1
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/iptables.up.rules"
+wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/iptables.up.rules"
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 MYIP=`curl -s ifconfig.me`;
 MYIP2="s/xxxxxxxxx/$MYIP/g";
