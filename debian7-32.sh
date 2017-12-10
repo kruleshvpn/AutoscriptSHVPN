@@ -100,9 +100,9 @@ sed -i $MYIP2 /etc/iptables.up.rules;
 iptables-restore < /etc/iptables.up.rules
 service openvpn restart
 
-#konfigurasi openvpn
+#configuration openvpn
 cd /etc/openvpn/
-wget -O /etc/openvpn/1194-client.ovpn "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/client-1194.conf"
+wget -O /etc/openvpn/1194-client.ovpn "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/1194-client.ovpn;
 PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
 useradd -M -s /bin/false soned
@@ -113,14 +113,14 @@ tar cf client.tar 1194-client.ovpn pass.txt
 cp client.tar /home/vps/public_html/
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/badvpn-udpgw"
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
 # install mrtg
-wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/snmpd.conf"
-wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/mrtg-mem.sh"
+wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/snmpd.conf"
+wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/mrtg-mem.sh"
 chmod +x /root/mrtg-mem.sh
 cd /etc/snmp/
 sed -i 's/TRAPDRUN=no/TRAPDRUN=yes/g' /etc/default/snmpd
@@ -128,7 +128,7 @@ service snmpd restart
 snmpwalk -v 1 -c public localhost 1.3.6.1.4.1.2021.10.1.3.1
 mkdir -p /home/vps/public_html/mrtg
 cfgmaker --zero-speed 100000000 --global 'WorkDir: /home/vps/public_html/mrtg' --output /etc/mrtg.cfg public@localhost
-curl "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/mrtg.conf" >> /etc/mrtg.cfg
+curl "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/mrtg.conf" >> /etc/mrtg.cfg
 sed -i 's/WorkDir: \/var\/www\/mrtg/# WorkDir: \/var\/www\/mrtg/g' /etc/mrtg.cfg
 sed -i 's/# Options\[_\]: growright, bits/Options\[_\]: growright/g' /etc/mrtg.cfg
 indexmaker --output=/home/vps/public_html/mrtg/index.html /etc/mrtg.cfg
@@ -198,7 +198,7 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 #install squid3
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/squid3.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/squid3.conf"
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
@@ -213,11 +213,11 @@ service vnstat restart
 
 # downlaod script
 cd
-wget -O speedtest_cli.py "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
-wget -O bench-network.sh "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/bench-network.sh"
-wget "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/monssh"
-wget "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/user-list"
-wget "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/menu"
+wget -O speedtest_cli.py "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/speedtest.py"
+wget -O bench-network.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/bench-network.sh"
+wget "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/monssh"
+wget "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/user-list"
+wget "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/menu"
 
 #Blockir Torrent
 iptables -A OUTPUT -p tcp --dport 6881:6889 -j DROP
