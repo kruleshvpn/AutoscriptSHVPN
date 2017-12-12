@@ -18,9 +18,11 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
 # set repo
-wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/sources.list.debian7"
+wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/SSHAnakSolo/autoscript/master/null/sources.list.debian7"
 wget "http://www.dotdeb.org/dotdeb.gpg"
+wget "http://www.webmin.com/jcameron-key.asc"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
+cat jcameron-key.asc | apt-key add -;rm jcameron-key.asc
 
 # remove unused
 apt-get -y --purge remove samba*;
@@ -85,32 +87,33 @@ service php5-fpm restart
 service nginx restart
 
 # install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.github.com/arieonline/autoscript/master/conf/openvpn-debian.tar"
-cd /etc/openvpn/
-tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/1194.conf"
-service openvpn restart
-sysctl -w net.ipv4.ip_forward=1
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/iptables.up.rules"
-sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
-MYIP=`curl -s ifconfig.me`;
-MYIP2="s/xxxxxxxxx/$MYIP/g";
-sed -i $MYIP2 /etc/iptables.up.rules;
-iptables-restore < /etc/iptables.up.rules
-service openvpn restart
+# wget -O /etc/openvpn/openvpn.tar "https://raw.github.com/arieonline/autoscript/master/conf/openvpn-debian.tar"
+# cd /etc/openvpn/
+# tar xf openvpn.tar
+# wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/1194.conf"
+# service openvpn restart
+# sysctl -w net.ipv4.ip_forward=1
+# sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+# wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/iptables.up.rules"
+# sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
+# MYIP=`curl -s ifconfig.me`;
+# MYIP2="s/xxxxxxxxx/$MYIP/g";
+# sed -i $MYIP2 /etc/iptables.up.rules;
+# iptables-restore < /etc/iptables.up.rules
+# service openvpn restart
 
 #konfigurasi openvpn
-cd /etc/openvpn/
-wget -O /etc/openvpn/1194-client.ovpn "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/client-1194.conf"
-sed -i $MYIP2 /etc/openvpn/1194-client.ovpn;
+#cd /etc/openvpn/
+#wget -O /etc/openvpn/1194-client.ovpn "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/client-1194.conf"
+#sed -i $MYIP2 /etc/openvpn/1194-client.ovpn;
 PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
 useradd -M -s /bin/false soned
 echo "soned:$PASS" | chpasswd
-echo "soned" > pass.txt
-echo "$PASS" >> pass.txt
-tar cf client.tar 1194-client.ovpn pass.txt
-cp client.tar /home/vps/public_html/
+#echo "soned" > pass.txt
+#echo "$PASS" >> pass.txt
+#tar cf client.tar 1194-client.ovpn pass.txt
+#cp client.tar /home/vps/public_html/
+cd
 
 # install badvpn
 wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/badvpn-udpgw"
@@ -204,10 +207,12 @@ service squid3 restart
 
 # install webmin
 cd
-wget "http://prdownloads.sourceforge.net/webadmin/webmin_1.670_all.deb"
-dpkg --install webmin_1.670_all.deb;
+apt-get -y install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
+wget "http://prdownloads.sourceforge.net/webadmin/webmin_1.840_all.deb"
+dpkg --install webmin_1.840_all.deb
+sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 apt-get -y -f install;
-rm /root/webmin_1.670_all.deb
+rm -f webmin_1.840_all.deb
 service webmin restart
 service vnstat restart
 
@@ -254,7 +259,7 @@ echo "===============================================" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Service"  | tee -a log-install.txt
 echo "-------"  | tee -a log-install.txt
-echo "OpenVPN  : TCP 1194 (client config : http://$MYIP/client.tar)"  | tee -a log-install.txt
+echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:81/client.ovpn)"  | tee -a log-install.txt
 echo "OpenSSH  : 22, 143"  | tee -a log-install.txt
 echo "Dropbear : 109, 110, 443"  | tee -a log-install.txt
 echo "Squid3   : 8080 (limit to IP SSH)"  | tee -a log-install.txt
