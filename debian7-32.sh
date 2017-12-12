@@ -282,14 +282,14 @@ echo "./bench-network.sh"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Account Default (utk SSH dan VPN)"  | tee -a log-install.txt
 echo "---------------"  | tee -a log-install.txt
-echo "User     : KhairulSHVPN"  | tee -a log-install.txt
-echo "Password : shvpn"  | tee -a log-install.txt
+echo "User     : krule"  | tee -a log-install.txt
+echo "Password : krule"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Features lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
-echo "Webmin   : https://$MYIP:10000/"  | tee -a log-install.txt
-echo "vnstat   : http://$MYIP/vnstat/"  | tee -a log-install.txt
-echo "MRTG     : http://$MYIP/mrtg/"  | tee -a log-install.txt
+echo "Webmin   : http://$MYIP:10000/"  | tee -a log-install.txt
+echo "vnstat   : http://$MYIP:81/vnstat/"  | tee -a log-install.txt
+echo "MRTG     : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
 echo "Timezone : Asia/Kuala_Lumpur"  | tee -a log-install.txt
 echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
