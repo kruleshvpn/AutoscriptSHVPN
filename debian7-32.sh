@@ -67,11 +67,11 @@ chmod 755 screenfetch
 cd
 echo "clear" >> .bash_profile
 echo "screenfetch" >> .bash_profile
-#wget -O screenfetch-dev "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/screenfetch-dev"
-#mv screenfetch-dev /usr/bin/screenfetch
-#chmod +x /usr/bin/screenfetch
-#echo "clear" >> .profile
-#echo "screenfetch" >> .profile
+wget -O screenfetch-dev "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/screenfetch-dev"
+mv screenfetch-dev /usr/bin/screenfetch
+chmod +x /usr/bin/screenfetch
+echo "clear" >> .profile
+echo "screenfetch" >> .profile
 
 # install webserver
 cd
@@ -87,32 +87,32 @@ service php5-fpm restart
 service nginx restart
 
 # install openvpn
-# wget -O /etc/openvpn/openvpn.tar "https://raw.github.com/arieonline/autoscript/master/conf/openvpn-debian.tar"
-# cd /etc/openvpn/
-# tar xf openvpn.tar
-# wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/1194.conf"
-# service openvpn restart
-# sysctl -w net.ipv4.ip_forward=1
-# sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-# wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/iptables.up.rules"
-# sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
-# MYIP=`curl -s ifconfig.me`;
-# MYIP2="s/xxxxxxxxx/$MYIP/g";
-# sed -i $MYIP2 /etc/iptables.up.rules;
-# iptables-restore < /etc/iptables.up.rules
-# service openvpn restart
+wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/openvpn-debian.tar"
+cd /etc/openvpn/
+tar xf openvpn.tar
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/1194.conf"
+service openvpn restart
+sysctl -w net.ipv4.ip_forward=1
+sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/iptables.up.rules"
+sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
+sed -i $MYIP2 /etc/iptables.up.rules;
+iptables-restore < /etc/iptables.up.rules
+service openvpn restart
 
-#konfigurasi openvpn
-#cd /etc/openvpn/
-#wget -O /etc/openvpn/1194-client.ovpn "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/client-1194.conf"
-#sed -i $MYIP2 /etc/openvpn/1194-client.ovpn;
+# configure openvpn client config
+cd /etc/openvpn/
+wget -O /etc/openvpn/1194-client.ovpn "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/1194-client.conf"
+sed -i $MYIP2 /etc/openvpn/1194-client.ovpn;
 PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
-useradd -M -s /bin/false soned
-echo "soned:$PASS" | chpasswd
-#echo "soned" > pass.txt
-#echo "$PASS" >> pass.txt
-#tar cf client.tar 1194-client.ovpn pass.txt
-#cp client.tar /home/vps/public_html/
+useradd -M -s /bin/false KhairulSHVPN
+echo "shvpn:$PASS" | chpasswd
+echo "username" >> pass.txt
+echo "password" >> pass.txt
+tar cf client.tar 1194-client.ovpn pass.txt
+cp client.tar /home/vps/public_html/
+cp 1194-client.ovpn client.ovpn
+cp client.ovpn /home/vps/public_html/
 cd
 
 # install badvpn
@@ -262,7 +262,7 @@ echo "-------"  | tee -a log-install.txt
 echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:81/client.ovpn)"  | tee -a log-install.txt
 echo "OpenSSH  : 22, 143"  | tee -a log-install.txt
 echo "Dropbear : 109, 110, 443"  | tee -a log-install.txt
-echo "Squid3   : 8080 (limit to IP SSH)"  | tee -a log-install.txt
+echo "Squid3   : 8080, 8000, 3128 (limit to IP SSH)"  | tee -a log-install.txt
 echo "badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Tools"  | tee -a log-install.txt
@@ -283,8 +283,8 @@ echo "./bench-network.sh"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Account Default (utk SSH dan VPN)"  | tee -a log-install.txt
 echo "---------------"  | tee -a log-install.txt
-echo "User     : soned"  | tee -a log-install.txt
-echo "Password : qweasd"  | tee -a log-install.txt
+echo "User     : KhairulSHVPN"  | tee -a log-install.txt
+echo "Password : shvpn"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Features lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
@@ -295,8 +295,10 @@ echo "Timezone : Asia/Kuala_Lumpur"  | tee -a log-install.txt
 echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
+echo "Auto Script Installer VPS - KhairulSHVPN (01119800265)"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
 echo "Log Installation --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "SILA REBOOT VPS ANDA !"  | tee -a log-install.txt
+echo "VPS AKAN DI RESTART AUTOMATIK SETIAP PUKUL 12 MALAM. SILA REBOOT VPS ANDA !"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==============================================="  | tee -a log-install.txt
