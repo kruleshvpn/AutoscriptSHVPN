@@ -41,7 +41,18 @@ apt-get update
 apt-get -y install nginx
 
 # install essential package
-apt-get -y install nano iptables dnsutils openvpn screen whois ngrep unzip unrar
+apt-get -y install nano iptables dnsutils openvpn screen whois ngrep unzip unrar bmon iftop htop nmap axel traceroute sysv-rc-conf dnsutils bc nethogs vnstat less screen psmisc apt-file ptunnel mtr git zsh mrtg snmp snmpd snmp-mibs-downloader rsyslog debsums rkhunter
+
+# disable exim
+service exim4 stop
+sysv-rc-conf exim4 off
+
+# update apt-file
+apt-file update
+
+# setting vnstat
+vnstat -u -i venet0
+service vnstat restart
 
 # install neofetch
 echo "deb http://dl.bintray.com/dawidd6/neofetch jessie main" | sudo tee -a /etc/apt/sources.list
@@ -127,6 +138,25 @@ sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/
 chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
+# install mrtg
+wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/snmpd.conf"
+wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/mrtg-mem.sh"
+chmod +x /root/mrtg-mem.sh
+cd /etc/snmp/
+sed -i 's/TRAPDRUN=no/TRAPDRUN=yes/g' /etc/default/snmpd
+service snmpd restart
+snmpwalk -v 1 -c public localhost 1.3.6.1.4.1.2021.10.1.3.1
+mkdir -p /home/vps/public_html/mrtg
+cfgmaker --zero-speed 100000000 --global 'WorkDir: /home/vps/public_html/mrtg' --output /etc/mrtg.cfg public@localhost
+curl "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/mrtg.conf" >> /etc/mrtg.cfg
+sed -i 's/WorkDir: \/var\/www\/mrtg/# WorkDir: \/var\/www\/mrtg/g' /etc/mrtg.cfg
+sed -i 's/# Options\[_\]: growright, bits/Options\[_\]: growright/g' /etc/mrtg.cfg
+indexmaker --output=/home/vps/public_html/mrtg/index.html /etc/mrtg.cfg
+if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
+if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
+if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
+cd
+
 # setting port ssh
 cd
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
@@ -142,6 +172,50 @@ echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 service ssh restart
 service dropbear restart
+
+# install vnstat gui
+cd /home/vps/public_html/
+wget http://www.sqweek.com/sqweek/files/vnstat_php_frontend-1.5.1.tar.gz
+tar xf vnstat_php_frontend-1.5.1.tar.gz
+rm vnstat_php_frontend-1.5.1.tar.gz
+mv vnstat_php_frontend-1.5.1 vnstat
+cd vnstat
+sed -i 's/eth0/venet0/g' config.php
+sed -i "s/\$iface_list = array('venet0', 'sixxs');/\$iface_list = array('venet0');/g" config.php
+sed -i "s/\$language = 'nl';/\$language = 'en';/g" config.php
+sed -i 's/Internal/Internet/g' config.php
+sed -i '/SixXS IPv6/d' config.php
+cd
+
+# install fail2ban
+apt-get -y install fail2ban;service fail2ban restart
+
+# Instal DDOS Flate
+if [ -d '/usr/local/ddos' ]; then
+	echo; echo; echo "Please un-install the previous version first"
+	exit 0
+else
+	mkdir /usr/local/ddos
+fi
+clear
+echo; echo 'Installing DOS-Deflate 0.6'; echo
+echo; echo -n 'Downloading source files...'
+wget -q -O /usr/local/ddos/ddos.conf http://www.inetbase.com/scripts/ddos/ddos.conf
+echo -n '.'
+wget -q -O /usr/local/ddos/LICENSE http://www.inetbase.com/scripts/ddos/LICENSE
+echo -n '.'
+wget -q -O /usr/local/ddos/ignore.ip.list http://www.inetbase.com/scripts/ddos/ignore.ip.list
+echo -n '.'
+wget -q -O /usr/local/ddos/ddos.sh http://www.inetbase.com/scripts/ddos/ddos.sh
+chmod 0755 /usr/local/ddos/ddos.sh
+cp -s /usr/local/ddos/ddos.sh /usr/local/sbin/ddos
+echo '...done'
+echo; echo -n 'Creating cron to run script every minute.....(Default setting)'
+/usr/local/ddos/ddos.sh --cron > /dev/null 2>&1
+echo '.....done'
+echo; echo 'Installation has completed.'
+echo 'Config file is at /usr/local/ddos/ddos.conf'
+echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # install squid3
 cd
