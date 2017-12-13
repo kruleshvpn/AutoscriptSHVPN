@@ -50,7 +50,10 @@ apt-get update
 apt-get install neofetch
 
 echo "clear" >> .bashrc
+echo 'echo -e ""' >> .bashrc
+echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Selamat datang ke server $HOSTNAME"' >> .bashrc
+echo 'echo -e ""' >> .bashrc
 echo 'echo -e "##############################################"' >> .bashrc
 echo 'echo -e "#                                            #"' >> .bashrc
 echo 'echo -e "#                                            #"' >> .bashrc
@@ -181,6 +184,8 @@ echo "unset HISTFILE" >> /etc/profile
 
 # info
 clear
+echo "" | tee -a log-install.txt
+echo "===========================================" | tee -a log-install.txt
 echo "Autoscript SHVPN Server Ini Termasuk:" | tee log-install.txt
 echo "===========================================" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
