@@ -200,7 +200,7 @@ echo "nginx    : 81"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Script"  | tee -a log-install.txt
 echo "------"  | tee -a log-install.txt
-echo "menu (Menampilkan daftar perintah yang tersedia)"  | tee -a log-install.txt
+echo "menu (Tampilan menu)"  | tee -a log-install.txt
 echo "usernew (Membuat Akaun SSH)"  | tee -a log-install.txt
 echo "trial (Membuat Akaun Trial)"  | tee -a log-install.txt
 echo "hapus (Menghapus Akaun SSH)"  | tee -a log-install.txt
@@ -246,4 +246,4 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
-rm -f /root/debian7.sh
+rm -f /root/debian7-32bit.sh
