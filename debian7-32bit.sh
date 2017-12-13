@@ -68,6 +68,21 @@ echo 'echo -e "#                                            #"' >> .bashrc
 echo 'echo -e "#                                            #"' >> .bashrc
 echo 'echo -e "##############################################"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
+echo 'echo -e "============================================"' >> .bashrc
+echo 'echo -e "================Menu Bantuan================"' >> .bashrc
+echo 'echo -e "============================================"' >> .bashrc
+echo 'echo -e "=menu      (Senarai menu yang boleh digunakan)"' >> .bashrc
+echo 'echo -e "=usernew   (Membuat Akaun SSH Baru)"' >> .bashrc
+echo 'echo -e "=trial     (Membuat Akaun Trial)"' >> .bashrc
+echo 'echo -e "=hapus     (Membuang Akaun Pengguna SSH)"' >> .bashrc
+echo 'echo -e "=cek       (Semak Pengguna Yang Sedang Login)"' >> .bashrc
+echo 'echo -e "=member    (Semak Senarai Pengguna SSH)"' >> .bashrc
+echo 'echo -e "=resvis    (Restart Service Dropbear, Webmin, Squid3, OpenVPN dan SSH)"' >> .bashrc
+echo 'echo -e "=reboot    (Reboot VPS Anda)"' >> .bashrc
+echo 'echo -e "=speedtest (Speedtest VPS Anda)"' >> .bashrc
+echo 'echo -e "=info      (Memaparkan segala info tentang VPS Anda)"' >> .bashrc
+echo 'echo -e "=about     (Informasi tentang script auto install)"' >> .bashrc
+echo 'echo -e "============================================"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Sila masukkan kod arahan anda di bawah:- "' >> .bashrc
 echo 'echo -e ""' >> .bashrc
