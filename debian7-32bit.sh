@@ -28,7 +28,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
 # set repo
-wget -O /etc/apt/sources.list "http://vira.cf/sources.list.debian7"
+wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/sources.list.debian7"
 wget "http://www.dotdeb.org/dotdeb.gpg"
 wget "http://www.webmin.com/jcameron-key.asc"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
@@ -71,17 +71,17 @@ echo 'echo -e ""' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
 echo 'echo -e "================Menu Bantuan================"' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
-echo 'echo -e "=menu      (Senarai menu yang boleh digunakan)"' >> .bashrc
-echo 'echo -e "=usernew   (Membuat Akaun SSH Baru)"' >> .bashrc
-echo 'echo -e "=trial     (Membuat Akaun Trial)"' >> .bashrc
-echo 'echo -e "=hapus     (Membuang Akaun Pengguna SSH)"' >> .bashrc
-echo 'echo -e "=cek       (Semak Pengguna Yang Sedang Login)"' >> .bashrc
-echo 'echo -e "=member    (Semak Senarai Pengguna SSH)"' >> .bashrc
-echo 'echo -e "=resvis    (Restart Service Dropbear, Webmin, Squid3, OpenVPN dan SSH)"' >> .bashrc
-echo 'echo -e "=reboot    (Reboot VPS Anda)"' >> .bashrc
-echo 'echo -e "=speedtest (Speedtest VPS Anda)"' >> .bashrc
-echo 'echo -e "=info      (Memaparkan segala info tentang VPS Anda)"' >> .bashrc
-echo 'echo -e "=about     (Informasi tentang script auto install)"' >> .bashrc
+echo 'echo -e "=Menu      (Senarai menu yang boleh digunakan)"' >> .bashrc
+echo 'echo -e "=NewUser   (Membuat Akaun SSH Baru)"' >> .bashrc
+echo 'echo -e "=Trial     (Membuat Akaun Trial)"' >> .bashrc
+echo 'echo -e "=Remove    (Membuang Akaun Pengguna SSH)"' >> .bashrc
+echo 'echo -e "=Check     (Semak Pengguna Yang Sedang Login)"' >> .bashrc
+echo 'echo -e "=User      (Semak Senarai Pengguna SSH)"' >> .bashrc
+echo 'echo -e "=ResServ   (Restart Service Dropbear, Webmin, Squid3, OpenVPN dan SSH)"' >> .bashrc
+echo 'echo -e "=Reboot    (Reboot VPS Anda)"' >> .bashrc
+echo 'echo -e "=Speedtest (Speedtest VPS Anda)"' >> .bashrc
+echo 'echo -e "=Info      (Memaparkan segala info tentang VPS Anda)"' >> .bashrc
+echo 'echo -e "=About     (Informasi tentang script auto install)"' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Sila masukkan kod arahan anda di bawah:- "' >> .bashrc
@@ -91,37 +91,37 @@ echo 'echo -e ""' >> .bashrc
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "http://vira.cf/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://github.com/kruleshvpn/AutoscriptSHVPN/raw/master/conf/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by Khairul SHVPN || +601119800265</pre>" > /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "http://vira.cf/vps.conf"
+echo "<pre>Setup by Khairul SHVPN. Do contact me if you have any problem (+601119800265)</pre>" > /home/vps/public_html/index.html
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/vps.conf"
 service nginx restart
 
 # install openvpn
-wget -O /etc/openvpn/openvpn.tar "http://vira.cf/openvpn-debian.tar"
+wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/openvpn-debian.tar"
 cd /etc/openvpn/
 tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "http://vira.cf/1194.conf"
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/1194.conf"
 service openvpn restart
 sysctl -w net.ipv4.ip_forward=1
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
-iptables-save > /etc/iptables_yg_baru_dibikin.conf
-wget -O /etc/network/if-up.d/iptables "http://vira.cf/iptables"
+iptables-save > /etc/iptables_latest.conf
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/iptables"
 chmod +x /etc/network/if-up.d/iptables
 service openvpn restart
 
-# konfigurasi openvpn
+# OpenVPN configuration
 cd /etc/openvpn/
-wget -O /etc/openvpn/client.ovpn "http://vira.cf/client-1194.conf"
+wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "http://vira.cf/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "http://vira.cf/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -146,7 +146,7 @@ service dropbear restart
 # install squid3
 cd
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "http://vira.cf/squid3.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/squid3.conf"
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
@@ -160,29 +160,29 @@ service webmin restart
 
 # download script
 cd /usr/bin
-wget -O menu "http://vira.cf/menu.sh"
-wget -O usernew "http://vira.cf/usernew.sh"
-wget -O trial "http://vira.cf/trial.sh"
-wget -O hapus "http://vira.cf/hapus.sh"
-wget -O cek "http://vira.cf/user-login.sh"
-wget -O member "http://vira.cf/user-list.sh"
-wget -O resvis "http://vira.cf/resvis.sh"
-wget -O speedtest "http://vira.cf/speedtest_cli.py"
-wget -O info "http://vira.cf/info.sh"
-wget -O about "http://vira.cf/about.sh"
+wget -O Menu "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/menu.sh"
+wget -O NewUser "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/NewUser.sh"
+wget -O Trial "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/Trial.sh"
+wget -O Remove "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/Remove.sh"
+wget -O Check "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/user-login.sh"
+wget -O User "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/user-list.sh"
+wget -O ResServ "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/ResServ.sh"
+wget -O Speedtest "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/speedtest_cli.py"
+wget -O Info "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/info.sh"
+wget -O About "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/About.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
-chmod +x menu
-chmod +x usernew
-chmod +x trial
-chmod +x hapus
-chmod +x cek
-chmod +x member
-chmod +x resvis
-chmod +x speedtest
-chmod +x info
-chmod +x about
+chmod +x Menu
+chmod +x NewUser
+chmod +x Trial
+chmod +x Remove
+chmod +x Check
+chmod +x User
+chmod +x ResServ
+chmod +x Speedtest
+chmod +x Info
+chmod +x About
 
 # finishing
 cd
@@ -203,9 +203,8 @@ echo "" | tee -a log-install.txt
 echo "===========================================" | tee -a log-install.txt
 echo "Autoscript SHVPN Server Ini Termasuk:" | tee log-install.txt
 echo "===========================================" | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "Service"  | tee -a log-install.txt
-echo "-------"  | tee -a log-install.txt
+echo "===============Service Port================"  | tee -a log-install.txt
+echo "==========================================="  | tee -a log-install.txt
 echo "OpenSSH  : 22, 143"  | tee -a log-install.txt
 echo "Dropbear : 80, 443"  | tee -a log-install.txt
 echo "Squid3   : 8080, 3128, 8000 (limit to IP SSH)"  | tee -a log-install.txt
@@ -213,19 +212,20 @@ echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:81/client.ovpn)"  | tee 
 echo "badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
 echo "nginx    : 81"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Script"  | tee -a log-install.txt
-echo "------"  | tee -a log-install.txt
-echo "menu (Tampilan menu)"  | tee -a log-install.txt
-echo "usernew (Membuat Akaun SSH)"  | tee -a log-install.txt
-echo "trial (Membuat Akaun Trial)"  | tee -a log-install.txt
-echo "hapus (Menghapus Akaun SSH)"  | tee -a log-install.txt
-echo "cek (Cek User Login)"  | tee -a log-install.txt
-echo "member (Cek Member SSH)"  | tee -a log-install.txt
-echo "resvis (Restart Service dropbear, webmin, squid3, openvpn dan ssh)"  | tee -a log-install.txt
-echo "reboot (Reboot VPS)"  | tee -a log-install.txt
-echo "speedtest (Speedtest VPS)"  | tee -a log-install.txt
-echo "info (Menampilkan Informasi Sistem)"  | tee -a log-install.txt
-echo "about (Informasi tentang script auto install)"  | tee -a log-install.txt
+echo "==========================================="  | tee -a log-install.txt
+echo "==================Script==================="  | tee -a log-install.txt
+echo "==========================================="  | tee -a log-install.txt
+echo "Menu      (Senarai menu yang boleh digunakan)"  | tee -a log-install.txt
+echo "NewUser   (Membuat Akaun SSH Baru)"  | tee -a log-install.txt
+echo "Trial     (Membuat Akaun Trial)"  | tee -a log-install.txt
+echo "Remove    (Membuang Akaun Pengguna SSH)"  | tee -a log-install.txt
+echo "Check     (Semak Pengguna Yang Sedang Login)"  | tee -a log-install.txt
+echo "User      (Semak Senarai Pengguna SSH)"  | tee -a log-install.txt
+echo "ResServ   (Restart Service Dropbear, Webmin, Squid3, OpenVPN dan SSH)"  | tee -a log-install.txt
+echo "Reboot    (Reboot VPS Anda)"  | tee -a log-install.txt
+echo "Speedtest (Speedtest VPS Anda)"  | tee -a log-install.txt
+echo "Info      (Memaparkan segala info tentang VPS Anda)"  | tee -a log-install.txt
+echo "About     (Informasi tentang script auto install)"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 echo "===============Features lain==============="  | tee -a log-install.txt
@@ -244,7 +244,9 @@ echo "VPS AKAN DIREBOOT SECARA AUTOMATIK SETIAP PUKUL 12 MALAM"  | tee -a log-in
 echo "Sila Reboot VPS Anda!!!"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
 echo "Terima kasih kerana menggunakan Autoscript SHVPN, Server anda: $HOSTNAME"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
 echo "##############################################"  | tee -a log-install.txt
 echo "#                                            #"  | tee -a log-install.txt
 echo "#                                            #"  | tee -a log-install.txt
