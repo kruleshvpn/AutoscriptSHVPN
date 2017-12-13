@@ -1,5 +1,6 @@
 #!/bin/bash
 #Script Auto Creating The SSH User
+#Script By Khairul SHVPN
 
 read -p "Username : " Login
 read -p "Password : " Pass
