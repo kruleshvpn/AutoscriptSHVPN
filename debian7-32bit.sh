@@ -75,7 +75,7 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "http://vira.cf/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by Khairul SHVPN</pre>" > /home/vps/public_html/index.html
+echo "<pre>Setup by Khairul SHVPN || +601119800265</pre>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "http://vira.cf/vps.conf"
 service nginx restart
 
