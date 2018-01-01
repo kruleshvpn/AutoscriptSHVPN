@@ -5,7 +5,7 @@
 
 IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 
-Login=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
+Login=shvpn-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
 Pass=`</dev/urandom tr -dc a-f0-9 | head -c9`
 
@@ -20,7 +20,7 @@ echo -e "Port OpenSSH : 22,143"
 echo -e "Port Dropbear: 80,443"
 echo -e "Port Squid   : 8080,3128,8080"
 echo -e "Port OpenVPN : 1194"
-echo -e "File OpenVPN : http://$IP:81/client.ovpn"
+echo -e "File OpenVPN : http://$IP:82/client.ovpn"
 echo -e "Username     : $Login "
 echo -e "Password     : $Pass"
 echo -e "-----------------------------"
