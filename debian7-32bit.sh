@@ -82,18 +82,20 @@ echo 'echo -e ""' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
 echo 'echo -e "================Menu Bantuan================"' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
-echo 'echo -e "=Menu      (Senarai menu yang boleh digunakan)"' >> .bashrc
-echo 'echo -e "=NewUser   (Membuat Akaun SSH Baru)"' >> .bashrc
-echo 'echo -e "=Trial     (Membuat Akaun Trial)"' >> .bashrc
-echo 'echo -e "=Remove    (Membuang Akaun Pengguna SSH)"' >> .bashrc
-echo 'echo -e "=Check     (Semak Pengguna Yang Sedang Login)"' >> .bashrc
-echo 'echo -e "=User      (Semak Senarai Pengguna SSH)"' >> .bashrc
-echo 'echo -e "=ResServ   (Restart Service Dropbear, Webmin, Squid3, OpenVPN dan SSH)"' >> .bashrc
-echo 'echo -e "=Reboot    (Reboot VPS Anda)"' >> .bashrc
-echo 'echo -e "=Speedtest (Speedtest VPS Anda)"' >> .bashrc
-echo 'echo -e "=Info      (Memaparkan segala info tentang VPS Anda)"' >> .bashrc
-echo 'echo -e "=About     (Informasi tentang script auto install)"' >> .bashrc
-echo 'echo -e "=exit      (Keluar dari terminal)"' >> .bashrc
+echo 'echo -e "=Menu       (Senarai menu yang boleh digunakan)"' >> .bashrc
+echo 'echo -e "=NewUser    (Membuat Akaun SSH Baru)"' >> .bashrc
+echo 'echo -e "=NewUserSSL (Membuat Akaun SSH SSL Baru)"' >> .bashrc
+echo 'echo -e "=Trial      (Membuat Akaun Trial)"' >> .bashrc
+echo 'echo -e "=TrialSSL   (Membuat Akaun Trial SSL)"' >> .bashrc
+echo 'echo -e "=Remove     (Membuang Akaun Pengguna SSH)"' >> .bashrc
+echo 'echo -e "=Check      (Semak Pengguna Yang Sedang Login)"' >> .bashrc
+echo 'echo -e "=User       (Semak Senarai Pengguna SSH)"' >> .bashrc
+echo 'echo -e "=ResServ    (Restart Service Dropbear, Webmin, Squid3, OpenVPN dan SSH)"' >> .bashrc
+echo 'echo -e "=Reboot     (Reboot VPS Anda)"' >> .bashrc
+echo 'echo -e "=Speedtest  (Speedtest VPS Anda)"' >> .bashrc
+echo 'echo -e "=Info       (Memaparkan segala info tentang VPS Anda)"' >> .bashrc
+echo 'echo -e "=About      (Informasi tentang script auto install)"' >> .bashrc
+echo 'echo -e "=exit       (Keluar dari terminal)"' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Sila masukkan kod arahan anda di bawah:- "' >> .bashrc
@@ -237,7 +239,9 @@ service webmin restart
 cd /usr/bin
 wget -O Menu "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/menu.sh"
 wget -O NewUser "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/NewUser.sh"
+wget -O NewUserSSL "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/NewUserSSL.sh"
 wget -O Trial "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/Trial.sh"
+wget -O TrialSSL "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/TrialSSL.sh"
 wget -O Remove "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/Remove.sh"
 wget -O Check "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/user-login.sh"
 wget -O User "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/user-list.sh"
@@ -250,7 +254,9 @@ echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
 chmod +x Menu
 chmod +x NewUser
+chmod +x NewUserSSL
 chmod +x Trial
+chmod +x TrialSSL
 chmod +x Remove
 chmod +x Check
 chmod +x User
