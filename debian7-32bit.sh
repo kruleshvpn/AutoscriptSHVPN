@@ -93,6 +93,7 @@ echo 'echo -e "=Reboot    (Reboot VPS Anda)"' >> .bashrc
 echo 'echo -e "=Speedtest (Speedtest VPS Anda)"' >> .bashrc
 echo 'echo -e "=Info      (Memaparkan segala info tentang VPS Anda)"' >> .bashrc
 echo 'echo -e "=About     (Informasi tentang script auto install)"' >> .bashrc
+echo 'echo -e "=exit      (Keluar dari terminal)"' >> .bashrc
 echo 'echo -e "============================================"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Sila masukkan kod arahan anda di bawah:- "' >> .bashrc
