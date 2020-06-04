@@ -14,5 +14,8 @@ wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/debian7
 # WITH OPENVPN
 wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/debian7-32bit.sh && chmod +x debian7-32bit.sh && ./debian7-32bit.sh
 
+# Debian 9
+wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
+
 # OPENVPN ONLY
 wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
