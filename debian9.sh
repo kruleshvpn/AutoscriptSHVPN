@@ -357,4 +357,5 @@ echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
 apt-get remove unscd
+echo "Port 22" | sudo tee -a /etc/ssh/sshd_config
 rm -f /root/debian9.sh
