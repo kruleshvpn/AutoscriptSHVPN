@@ -237,6 +237,15 @@ sed -i $MYIP2 /etc/squid3/squid.conf;
 sed -i $MYIP2 /etc/squid/squid.conf;
 service squid restart
 
+#install stunnel
+apt-get install stunnel4
+wget -O /etc/stunnel/stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.conf"
+#openssl genrsa -out key.pem 2048
+#openssl req -new -x509 -key key.pem -out cert.pem -days 1095
+cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+wget -O /etc/default/stunnel4 "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/settingstunnel.conf"
+/etc/init.d/stunnel4 restart
+
 # install webmin
 cd
 wget -O webmin-current.deb "http://www.webmin.com/download/deb/webmin-current.deb"
