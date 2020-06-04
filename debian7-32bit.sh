@@ -15,7 +15,12 @@ cd
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
-sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
+touch /etc/rc.local
+cp /proc/sys/net/ipv6/conf/all/disable_ipv6 /etc/rc.local
+
+#change jessie
+wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/sources.list.debian9"
+#change stretch to jessie for debian src
 
 # install wget and curl
 apt-get update;apt-get -y install wget curl;
@@ -218,14 +223,19 @@ echo; echo -n 'Creating cron to run script every minute.....(Default setting)'
 echo '.....done'
 echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
-echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
+echo 'Please send in your comments and/or suggestions to kaselurk92@gmail.com'
 
 # install squid3
 cd
 apt-get -y install squid3
+mkdir /etc/squid3
+cp /etc/squid/errorpage.css /etc/squid3/errorpage.css
+touch /etc/squid3/squid.conf
 wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/squid3.conf"
 sed -i $MYIP2 /etc/squid3/squid.conf;
-service squid3 restart
+sed -i $MYIP2 /etc/squid/squid.conf;
+service squid restart
 
 # install webmin
 cd
@@ -273,7 +283,7 @@ service openvpn restart
 service cron restart
 service ssh restart
 service dropbear restart
-service squid3 restart
+service squid restart
 service webmin restart
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
@@ -298,7 +308,9 @@ echo "==================Script==================="  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 echo "Menu      (Senarai menu yang boleh digunakan)"  | tee -a log-install.txt
 echo "NewUser   (Membuat Akaun SSH Baru)"  | tee -a log-install.txt
+echo "NewUserSSL   (Membuat Akaun SSH Baru)"  | tee -a log-install.txt
 echo "Trial     (Membuat Akaun Trial)"  | tee -a log-install.txt
+echo "TrialSSL     (Membuat Akaun Trial)"  | tee -a log-install.txt
 echo "Remove    (Membuang Akaun Pengguna SSH)"  | tee -a log-install.txt
 echo "Check     (Semak Pengguna Yang Sedang Login)"  | tee -a log-install.txt
 echo "User      (Semak Senarai Pengguna SSH)"  | tee -a log-install.txt
@@ -344,4 +356,5 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
+apt-get remove unscd
 rm -f /root/debian7-32bit.sh
