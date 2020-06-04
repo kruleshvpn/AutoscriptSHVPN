@@ -357,4 +357,4 @@ echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
 apt-get remove unscd
-rm -f /root/debian7-32bit.sh
+rm -f /root/debian9.sh
