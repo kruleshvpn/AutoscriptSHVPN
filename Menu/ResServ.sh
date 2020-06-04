@@ -3,6 +3,6 @@
 # Script by Khairul SHVPN
 service dropbear restart
 service webmin restart
-service squid3 restart
+service squid restart
 service openvpn restart
 service ssh restart
