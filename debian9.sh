@@ -13,6 +13,7 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 # go to root
 cd
 apt-get remove unscd
+y
 cd
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
