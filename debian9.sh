@@ -12,7 +12,8 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # go to root
 cd
-
+apt-get remove unscd
+cd
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 touch /etc/rc.local
@@ -365,6 +366,7 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
-apt-get remove unscd
 echo "Port 22" | sudo tee -a /etc/ssh/sshd_config
 rm -f /root/debian9.sh
+cd
+
