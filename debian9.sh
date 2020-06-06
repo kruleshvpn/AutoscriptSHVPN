@@ -367,6 +367,7 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
+echo "" | sudo tee -a /etc/ssh/sshd_config
 echo "Port 22" | sudo tee -a /etc/ssh/sshd_config
 rm -f /root/debian9.sh
 cd
@@ -374,3 +375,9 @@ wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/kruleshvpn/Auto
 cd
 apt install php7.0 mysql-server mysql-client libapache2-mod-php7.0 phpmyadmin
 cd
+sudo ln -s /usr/share/phpmyadmin /home/vps/public_html
+echo "" | sudo tee -a /etc/apache2/apache2.conf
+echo "Include /etc/phpmyadmin/apache.conf" | sudo tee -a /etc/apache2/apache2.conf
+echo "" | sudo tee -a /etc/apache2/apache2.conf
+sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+sudo a2enconf phpmyadmin.conf
