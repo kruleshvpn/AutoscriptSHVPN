@@ -373,6 +373,7 @@ rm -f /root/debian9.sh
 cd
 wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/sources.list.debian10"
 cd
+apt-get update
 apt install php7.0 mysql-server mysql-client libapache2-mod-php7.0 phpmyadmin
 cd
 sudo ln -s /usr/share/phpmyadmin /home/vps/public_html
