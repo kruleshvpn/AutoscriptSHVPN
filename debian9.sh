@@ -369,4 +369,15 @@ echo ""  | tee -a log-install.txt
 cd
 echo "" | sudo tee -a /etc/ssh/sshd_config
 echo "Port 22" | sudo tee -a /etc/ssh/sshd_config
+apt -y update
+apt -y upgrade
+apt -y install stunnel
+cd /etc/stunnel
+wget -O stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.conf"
+cd
+cd /etc/default
+wget -O stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel4"
+wget -O stunnel.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.pem"
+service ssh restart
+service stunnel4 restart
 rm -f /root/debian9.sh
