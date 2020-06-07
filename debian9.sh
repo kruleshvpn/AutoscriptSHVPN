@@ -374,10 +374,12 @@ apt -y upgrade
 apt -y install stunnel
 cd /etc/stunnel
 wget -O stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.conf"
+wget -O stunnel.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.pem"
+wget -O cert.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/cert.pem"
 cd
 cd /etc/default
 wget -O stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel4"
-wget -O stunnel.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.pem"
+
 service ssh restart
 service stunnel4 restart
 rm -f /root/debian9.sh
