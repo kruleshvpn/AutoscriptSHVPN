@@ -378,8 +378,7 @@ wget -O stunnel.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVP
 wget -O cert.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/cert.pem"
 cd
 cd /etc/default
-wget -O stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel4"
-
+wget -O stunnel4 "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel4"
 service ssh restart
 service stunnel4 restart
 rm -f /root/debian9.sh
