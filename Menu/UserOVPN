@@ -1,0 +1,5 @@
+#!/bin/bash
+#Script Auto Creating The SSH User
+#Script By Khairul SHVPN
+
+sudo bash ovpn.sh
