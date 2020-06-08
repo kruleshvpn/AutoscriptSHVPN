@@ -94,6 +94,7 @@ echo 'echo -e "=NewUser    (Membuat Akaun SSH Baru)"' >> .bashrc
 echo 'echo -e "=NewUserSSL (Membuat Akaun SSH SSL Baru)"' >> .bashrc
 echo 'echo -e "=Trial      (Membuat Akaun Trial)"' >> .bashrc
 echo 'echo -e "=TrialSSL   (Membuat Akaun Trial SSL)"' >> .bashrc
+echo 'echo -e "=UserOVPN   (Membuat OVPN)"' >> .bashrc
 echo 'echo -e "=Remove     (Membuang Akaun Pengguna SSH)"' >> .bashrc
 echo 'echo -e "=Check      (Semak Pengguna Yang Sedang Login)"' >> .bashrc
 echo 'echo -e "=User       (Semak Senarai Pengguna SSH)"' >> .bashrc
