@@ -4,27 +4,30 @@
 #Script by Khairul SHVPN
 
 IP=`dig +short myip.opendns.com @resolver1.opendns.com`
-
-Login=shvpn-`</dev/urandom tr -dc X-Z0-9 | head -c4`
+Login=trial-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
 Pass=`</dev/urandom tr -dc a-f0-9 | head -c9`
-
 useradd -e `date -d "$hari days" +"%Y-%m-%d"` -s /bin/false -M $Login
+
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
-echo -e ""
-echo -e "Tahniah, Account Trial berjaya didaftarkan. Share detail kepada user!!!"
-echo -e ""
-echo -e "==== Details SSH Account ===="
-echo -e "Host         : $IP" 
-echo -e "Port OpenSSH : 22,143"
-echo -e "Port Dropbear: 80,443"
-echo -e "Port Squid   : 8080,3128,8080"
-echo -e "Port OpenVPN : 1194"
-echo -e "File OpenVPN : http://$IP:85/client.ovpn"
-echo -e "Username     : $Login "
-echo -e "Password     : $Pass"
-echo -e "-----------------------------"
-echo -e "Sah Sehingga : $exp"
-echo -e "============================="
-echo -e "Script by Khairul SHVPN"
+echo ""
+echo "  Please screenshot this page for future reference"
+echo ""
+echo "Tahniah, Account Trial berjaya didaftarkan. Sila share detail kepada user!!!"
+echo ""
+echo "==== Details SSH Account ===="
+echo "Host         : $IP"
+echo "Port OpenSSH : 22,143"
+echo "Port Dropbear: 80,443"
+echo "Port Squid   : 8080,3128,8080"
+echo "Port OpenVPN : 1194"
+echo "File OpenVPN : http://$IP/client.ovpn"
+echo "Username     : $Login " 
+echo "Password     : $Pass"
+echo "-----------------------------"
+echo "Account Expired Date" 
+echo "-----------------------------"  
+date -d "$hari days" +"%d-%m-%Y" 
+echo "=============================" 
+echo "Script by Khairul SHVPN"
 echo -e ""
