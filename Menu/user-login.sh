@@ -7,7 +7,7 @@
 data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
 
 echo "------------------------------------------------"
-echo "   Senarai Pengguna Dropbear yang sedang login  ";
+echo "     Senarai Pengguna SSL yang sedang login     ";
 echo "------------------------------------------------"
 echo "";
 
@@ -27,7 +27,7 @@ echo "";
 data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
 
 echo "------------------------------------------------"
-echo "   Senarai Pengguna OpenSSH yang sedang login   ";
+echo "      Senarai Pengguna SSH yang sedang login    ";
 echo "------------------------------------------------"
 echo "";
 
