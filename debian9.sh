@@ -371,9 +371,6 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
-echo "" | tee -a /etc/ssh/sshd_config
-echo "Port 22" | tee -a /etc/ssh/sshd_config
-cd
 wget -O ovpn.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/ovpn.sh"
 cd
 apt -y update
