@@ -449,6 +449,7 @@ else
 			echo "Provide a name for the client:"
 			read -p "Name: " unsanitized_client
 			client=$(sed 's/[^0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-]/_/g' <<< "$unsanitized_client")
+			myip=`dig +short myip.opendns.com @resolver1.opendns.com`
 			while [[ -z "$client" || -e /etc/openvpn/server/easy-rsa/pki/issued/"$client".crt ]]; do
 				echo "$client: invalid name."
 				read -p "Name: " unsanitized_client
@@ -461,7 +462,7 @@ else
 			echo
 			echo "$client added. Configuration available in:" ~/"home/vps/public_html/$client.ovpn"
 			echo
-			echo "You also can download the configuration using this link: http://178.128.98.196:85/$client.ovpn"
+			echo "You also can download the configuration using this link: http://$myip:85/$client.ovpn"
 			echo			
 			cp ~/"$client.ovpn" /home/vps/public_html/"$client.ovpn"
 			exit
