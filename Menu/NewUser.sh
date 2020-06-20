@@ -27,7 +27,7 @@ echo "Password     : $Pass"
 echo "-----------------------------"
 echo "Account Expired Date" 
 echo "-----------------------------"  
-date -d "$hari days" +"%d-%m-%Y" 
+$exp
 echo "=============================" 
 echo "Script by Khairul SHVPN"
 echo -e ""
