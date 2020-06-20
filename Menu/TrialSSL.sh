@@ -12,7 +12,7 @@ Pass=`</dev/urandom tr -dc a-f0-9 | head -c9`
 useradd -e `date -d "$hari days" +"%Y-%m-%d"` -s /bin/sh -M $Login
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo ""
-echo "  Please screenshot this page for future reference"
+echo "Please screenshot this page for future reference"
 echo ""
 echo "Tahniah, Account Trial berjaya didaftarkan. Sila share detail kepada user!!!"
 echo ""
