@@ -6,6 +6,4 @@ service webmin restart
 service squid restart
 service openvpn restart
 service ssh restart
-service apache2 restart
-service nginx restart
-service stunnel restart
+service stunnel4 restart
