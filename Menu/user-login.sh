@@ -27,7 +27,7 @@ echo "";
 data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
 
 echo "------------------------------------------------"
-echo "      Senarai Pengguna SSH yang sedang login    ";
+echo "     Senarai Pengguna SSH yang sedang login     ";
 echo "------------------------------------------------"
 echo "";
 
