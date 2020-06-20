@@ -3,4 +3,4 @@
 #Script By Khairul SHVPN
 
 cd
-sudo bash ovpn.sh
+bash ovpn.sh
