@@ -11,7 +11,7 @@ useradd -e `date -d "$hari days" +"%Y-%m-%d"` -s /bin/false -M $Login
 
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo ""
-echo "  Please screenshot this page for future reference"
+echo "Please screenshot this page for future reference"
 echo ""
 echo "Tahniah, Account Trial berjaya didaftarkan. Sila share detail kepada user!!!"
 echo ""
