@@ -369,8 +369,8 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
-echo "" | sudo tee -a /etc/ssh/sshd_config
-echo "Port 22" | sudo tee -a /etc/ssh/sshd_config
+echo "" | tee -a /etc/ssh/sshd_config
+echo "Port 22" | tee -a /etc/ssh/sshd_config
 apt -y update
 apt -y upgrade
 apt -y install stunnel
