@@ -373,7 +373,7 @@ apt -y update
 apt -y upgrade
 apt -y install stunnel
 cd
-wget -O ovpn.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/openvpn-install.sh"
+wget -O ovpn.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/ovpn.sh"
 cd /etc/stunnel
 wget -O stunnel.conf "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.conf"
 wget -O stunnel.pem "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel.pem"
