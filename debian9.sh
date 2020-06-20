@@ -265,6 +265,7 @@ wget -O NewUser "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/ma
 wget -O NewUserSSL "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/NewUserSSL.sh"
 wget -O Trial "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/Trial.sh"
 wget -O TrialSSL "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/TrialSSL.sh"
+wget -O UserOVPN "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/UserOVPN.sh"
 wget -O Remove "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/Remove.sh"
 wget -O Check "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/user-login.sh"
 wget -O User "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/user-list.sh"
@@ -280,6 +281,7 @@ chmod +x NewUser
 chmod +x NewUserSSL
 chmod +x Trial
 chmod +x TrialSSL
+chmod +x UserOVPN
 chmod +x Remove
 chmod +x Check
 chmod +x User
