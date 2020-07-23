@@ -1178,6 +1178,9 @@ function revokeClient() {
 
 	echo ""
 	echo "Certificate for client $CLIENT revoked."
+	cd /home/vps/public_html/Config
+	rm $CLIENT.ovpn
+	cd
 }
 
 function removeUnbound() {
