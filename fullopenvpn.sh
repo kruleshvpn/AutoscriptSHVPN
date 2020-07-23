@@ -1142,8 +1142,7 @@ function newClient() {
 	echo "You also can download the configuration at http://$IPV4/Config/$CLIENT.ovpn"
 	cd
 	rm $CLIENT.ovpn
-	cd /home/vps/public_html/Config
-	
+		
 	exit 0
 }
 
@@ -1179,7 +1178,7 @@ function revokeClient() {
 	echo ""
 	echo "Certificate for client $CLIENT revoked."
 	cd /home/vps/public_html/Config
-	rm $CLIENT.ovpn
+	rm "$CLIENT".ovpn
 	cd
 }
 
