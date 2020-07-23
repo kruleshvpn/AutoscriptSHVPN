@@ -266,7 +266,7 @@ function installQuestions() {
 	echo "   2) Custom"
 	echo "   3) Random [49152-65535]"
 	until [[ $PORT_CHOICE =~ ^[1-3]$ ]]; do
-		read -rp "Port choice [1-3]: " -e -i PORT_CHOICE
+		read -rp "Port choice [1-3]: " -e -i 1 PORT_CHOICE
 	done
 	case $PORT_CHOICE in
 	1)
@@ -289,7 +289,7 @@ function installQuestions() {
 	echo "   1) UDP"
 	echo "   2) TCP"
 	until [[ $PROTOCOL_CHOICE =~ ^[1-2]$ ]]; do
-		read -rp "Protocol [1-2]: " -e -i PROTOCOL_CHOICE
+		read -rp "Protocol [1-2]: " -e -i 1 PROTOCOL_CHOICE
 	done
 	case $PROTOCOL_CHOICE in
 	1)
@@ -315,7 +315,7 @@ function installQuestions() {
 	echo "   12) NextDNS (Anycast: worldwide)"
 	echo "   13) Custom"
 	until [[ $DNS =~ ^[0-9]+$ ]] && [ "$DNS" -ge 1 ] && [ "$DNS" -le 13 ]; do
-		read -rp "DNS [1-12]: " -e -i DNS
+		read -rp "DNS [1-12]: " -e -i 3 DNS
 		if [[ $DNS == 2 ]] && [[ -e /etc/unbound/unbound.conf ]]; then
 			echo ""
 			echo "Unbound is already installed."
@@ -1134,9 +1134,13 @@ function newClient() {
 	} >>"$homeDir/$CLIENT.ovpn"
 
 	echo ""
-	echo "The configuration file has been written to $homeDir/$CLIENT.ovpn."
+	cp $CLIENT.ovpn /home/vps/public_html/Config
+	echo "The configuration file has been written to $homeDir/home/vps/public_html/Config/$CLIENT.ovpn."
 	echo "Download the .ovpn file and import it in your OpenVPN client."
-
+	cd
+	rm $CLIENT.ovpn
+	cd /home/vps/public_html/Config
+	
 	exit 0
 }
 
