@@ -432,7 +432,9 @@ verb 3" > /etc/openvpn/server/client-common.txt
 else
 	clear
 	echo "OpenVPN is already installed."
-	echo
+	echo ""
+	echo "Create General User Config"
+	echo ""
 	echo "Select an option:"
 	echo "   1) Add a new client"
 	echo "   2) Revoke an existing client"
@@ -460,11 +462,15 @@ else
 			# Generates the custom client.ovpn
 			new_client
 			echo
-			echo "$client added. Configuration available in:" ~/"home/vps/public_html/$client.ovpn"
+			mkdir /home/vps/public_html/Config
+			echo "$client added. Configuration available in:" ~/"home/vps/public_html/Config/$client.ovpn"
 			echo
-			echo "You also can download the configuration using this link: http://$myip:85/$client.ovpn"
+			echo "You also can download the configuration using this link: http://$myip:85/Config/$client.ovpn"
 			echo			
-			cp ~/"$client.ovpn" /home/vps/public_html/"$client.ovpn"
+			cp ~/"$client.ovpn" /home/vps/public_html/Config/"$client.ovpn"
+                        cd
+                        rm ~/"$client.ovpn"
+			
 			exit
 		;;
 		2)
