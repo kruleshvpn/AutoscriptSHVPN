@@ -1134,9 +1134,12 @@ function newClient() {
 	} >>"$homeDir/$CLIENT.ovpn"
 
 	echo ""
+	cd
 	cp $CLIENT.ovpn /home/vps/public_html/Config
 	echo "The configuration file has been written to $homeDir/home/vps/public_html/Config/$CLIENT.ovpn."
 	echo "Download the .ovpn file and import it in your OpenVPN client."
+	IPV4=`wget -qO- ipv4.icanhazip.com`
+	echo "You also can download the configuration at http://$IPV4/Config/$CLIENT.ovpn"
 	cd
 	rm $CLIENT.ovpn
 	cd /home/vps/public_html/Config
