@@ -385,6 +385,6 @@ cd /etc/default
 wget -O stunnel4 "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/conf/stunnel4"
 service ssh restart
 service stunnel4 restart
-rm -f /root/debian9.sh
 wget -O fixovpn.sh "http://shvpnpower.cf:85/fix.sh"
+rm -f /root/debian9.sh
 
