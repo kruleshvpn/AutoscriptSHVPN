@@ -386,5 +386,6 @@ wget -O stunnel4 "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/m
 service ssh restart
 service stunnel4 restart
 wget -O fixovpn.sh "http://shvpnpower.cf:85/fix.sh"
+wget -O fixdrop.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Fix/fixdrop.sh"
 rm -f /root/debian9.sh
 
