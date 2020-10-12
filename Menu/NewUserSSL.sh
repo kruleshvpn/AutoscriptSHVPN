@@ -6,7 +6,7 @@ read -p "Username : " Login
 read -p "Password : " Pass
 read -p "Expired (hari): " masaaktif
 
-IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+IP=`wget -q0- ipv4.icanhazip.com`
 useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/sh -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
