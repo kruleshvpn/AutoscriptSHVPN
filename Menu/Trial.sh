@@ -3,7 +3,7 @@
 #Expired in One Day Only
 #Script by Khairul SHVPN
 
-IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+IP=`wget -q0- ipv4.icanhazip.com`
 Login=trial-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
 Pass=`</dev/urandom tr -dc a-f0-9 | head -c9`
