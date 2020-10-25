@@ -18,4 +18,8 @@ echo "   "nameserver":"8.8.8.8"" | tee -a /var/snap/shadowsocks-libev/common/etc
 echo "}" | tee -a /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 
 cd /etc/systemd/system;
-wget -O /etc/systemd/system/shadowsocks-libev-server@.service "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/sss.json"
+wget -O /etc/systemd/system/shadowsocks-libev-server@.service "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/sss.json";
+
+cd;
+systemctl enable --now shadowsocks-libev-server@config;
+systemctl status shadowsocks-libev-server@config;
