@@ -17,4 +17,5 @@ echo "   "method":"aes-256-gcm"," | tee -a /var/snap/shadowsocks-libev/common/et
 echo "   "nameserver":"8.8.8.8"" | tee -a /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 echo "}" | tee -a /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 
-touch /etc/systemd/system/shadowsocks-libev-server@.service;
+cd /etc/systemd/system;
+wget -o shadowsocks-libev-server@.service "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/sss.json"
