@@ -1,0 +1,11 @@
+[Unit]
+Description=Shadowsocks-Libev Custom Server Service for %I
+Documentation=man:ss-server(1)
+After=network-online.target
+    
+[Service]
+Type=simple
+ExecStart=/usr/bin/snap run shadowsocks-libev.ss-server -c /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/%i.json
+    
+[Install]
+WantedBy=multi-user.target
