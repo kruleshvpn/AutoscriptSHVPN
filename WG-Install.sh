@@ -198,7 +198,7 @@ PostDown = iptables -D FORWARD -i ${SERVER_PUB_NIC} -o ${SERVER_WG_NIC} -j ACCEP
 	# Enable routing on the server
 	echo "net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1" >/etc/sysctl.d/wg.conf
-
+        echo "net.ipv4.ip_forward = 1" >/etc/sysctl.conf
 	sysctl --system
 
 	systemctl start "wg-quick@${SERVER_WG_NIC}"
