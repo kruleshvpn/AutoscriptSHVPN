@@ -222,14 +222,14 @@ net.ipv6.conf.all.forwarding = 1" >/etc/sysctl.d/wg.conf
 
 function newClient() {
 	ENDPOINT="${SERVER_PUB_IP}:${SERVER_PORT}"
-        BUG_REG="api-cua.maxis.com.my.sg4.shvpnpower.cf"
+
 	echo ""
 	echo "Tell me a name for the client."
 	echo "The name must consist of alphanumeric character. It may also include an underscore or a dash."
 
 	until [[ ${CLIENT_NAME} =~ ^[a-zA-Z0-9_-]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		read -rp "Client name: " -e CLIENT_NAME
-		read -rp "Bug Registered: " -e "${BUG_REG}"
+		read -rp "Bug Registered: " -e BUG_REG
 		CLIENT_EXISTS=$(grep -c -E "^### Client ${CLIENT_NAME}\$" "/etc/wireguard/${SERVER_WG_NIC}.conf")
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
