@@ -7,7 +7,7 @@
 # Initialisation var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
-MYIP=$(wget -qO- ipv4.icanhazip.com);
+MYIP=$(wget -q -O - v4.ident.me);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # go to root
