@@ -274,6 +274,7 @@ wget -O Info "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/maste
 wget -O About "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Menu/About.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
+echo "0 1 * * * root /etc/rc.local" > /etc/cron.d/badvpn
 
 chmod +x Menu
 chmod +x NewUser
@@ -288,6 +289,11 @@ chmod +x ResServ
 chmod +x Speedtest
 chmod +x Info
 chmod +x About
+
+cd /etc
+
+wget -O rc.local "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Fix/rc.local"
+chmod +x rc.local
 
 # finishing
 cd
