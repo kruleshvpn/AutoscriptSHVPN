@@ -401,4 +401,4 @@ echo ""
 echo "------------------------------ Modified by KAFAShop -----------------------------"
 echo "-----Rebooting your VPS -----"
 sleep 5
-reboo
+reboot
