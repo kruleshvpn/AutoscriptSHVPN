@@ -317,11 +317,11 @@ echo "===========================================" | tee -a log-install.txt
 echo "===============Service Port================"  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 echo "OpenSSH  : 22, 143"  | tee -a log-install.txt
-echo "Dropbear : 80, 443"  | tee -a log-install.txt
+echo "Dropbear : 85, 443"  | tee -a log-install.txt
 echo "Squid3   : 8080, 3128, 8000 (limit to IP SSH)"  | tee -a log-install.txt
-echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:81/client.ovpn)"  | tee -a log-install.txt
-echo "badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
-echo "nginx    : 81"  | tee -a log-install.txt
+echo "OpenVPN  : TCP 1194 (client config : http://$MYIP/client.ovpn)"  | tee -a log-install.txt
+echo "badvpn   : badvpn-udpgw port 7300 & 7400"  | tee -a log-install.txt
+echo "nginx    : 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 echo "==================Script==================="  | tee -a log-install.txt
