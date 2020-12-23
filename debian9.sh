@@ -376,9 +376,9 @@ echo "##############################################"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 cd
-wget -O ovpn.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/ovpn.sh"
-chmod +x ovpn.sh
-cd
+#wget -O ovpn.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/ovpn.sh"
+#chmod +x ovpn.sh
+#cd
 apt -y update
 apt -y upgrade
 apt -y install stunnel
@@ -392,6 +392,6 @@ wget -O stunnel4 "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/m
 service ssh restart
 service stunnel4 restart
 cd
-wget -O fixovpn.sh "http://shvpnpower.cf:85/fix.sh"
+#wget -O fixovpn.sh "http://shvpnpower.cf:85/fix.sh"
 wget -O fixdrop.sh "https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/Fix/fixdrop.sh"
 bash fixdrop.sh && rm -f /root/debian9.sh && rm -f /root/fixdrop.sh
