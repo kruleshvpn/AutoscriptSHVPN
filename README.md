@@ -1,5 +1,5 @@
 # AutoscriptSHVPN
-Autoscript for VPN Server Debian 7_32 Bit
+Autoscript for VPN Server Debian 7 & Debian 9
 
 Script by Khairul Amin || 01119800265
 
