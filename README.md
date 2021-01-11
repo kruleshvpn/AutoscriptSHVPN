@@ -19,3 +19,6 @@ wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/debian9
 
 # OPENVPN ONLY
 wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
+
+# 2021 Debian 9
+wget https://raw.githubusercontent.com/kruleshvpn/AutoscriptSHVPN/master/KAFAShop_Debian9VPS.sh && chmod +x KAFAShop* && ./KAFAShop_Debian9VPS.sh
