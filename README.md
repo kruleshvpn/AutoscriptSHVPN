@@ -5,6 +5,8 @@ Script by Khairul Amin || 01119800265
 
 Please do not hesitate to contact me
 
+The Autoscript for 2021 is running with IP Registration, please contact me for IP Registration to use the script.
+
 # Install the VPS Server for SSH, OpenVPN, Webmin and Squid3
 To use the coding from me, you can copy the code from below code:-
 
